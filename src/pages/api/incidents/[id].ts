@@ -78,15 +78,18 @@ export const PUT: APIRoute = async ({ params, request, locals }) => {
         updated_at = CURRENT_TIMESTAMP
     WHERE id = ?
   `).bind(
-    data.title,
-    data.description,
-    data.status,
-    data.impact,
-    resolvedAt,
+    data.title ?? null,
+    data.description ?? null,
+    data.status ?? null,
+    data.impact ?? null,
+    resolvedAt ?? null,
     id
   ).run();
 
-  return new Response('Updated successfully');
+  const updated = await env.DB.prepare('SELECT * FROM incidents WHERE id = ?').bind(id).first();
+  return new Response(JSON.stringify(updated), {
+    headers: { 'Content-Type': 'application/json' }
+  });
 };
 
 export const DELETE: APIRoute = async ({ params, request, locals }) => {

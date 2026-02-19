@@ -73,17 +73,25 @@ export const PUT: APIRoute = async ({ params, request, locals }) => {
         updated_at = CURRENT_TIMESTAMP
     WHERE id = ?
   `).bind(
-    data.name,
-    data.description,
-    data.status,
-    data.position,
+    data.name ?? null,
+    data.description ?? null,
+    data.status ?? null,
+    data.position ?? null,
     id
   ).run();
 
-  return new Response('Updated successfully');
+  const updated = await env.DB.prepare('SELECT * FROM components WHERE id = ?').bind(id).first();
+  return new Response(JSON.stringify(updated), {
+    headers: { 'Content-Type': 'application/json' }
+  });
 };
 
-export const DELETE: APIRoute = async ({ params, request, locals }) => {
+export const DELETE: APIRoute = async (context) => {
+  return handleDelete(context);
+};
+
+// Also support POST with ?action=delete for environments that block DELETE
+async function handleDelete({ params, request, locals }: any) {
   const env = locals.runtime?.env;
   if (!env?.DB) return new Response('DB unavailable', { status: 500 });
 
@@ -93,12 +101,13 @@ export const DELETE: APIRoute = async ({ params, request, locals }) => {
   const { id } = params;
   if (!id) return new Response('ID required', { status: 400 });
 
-  // Verify the component belongs to the user
   if (!(await verifyComponentOwnership(env, id, userId))) {
     return new Response('Component not found', { status: 404 });
   }
 
   await env.DB.prepare('DELETE FROM components WHERE id = ?').bind(id).run();
 
-  return new Response('Deleted successfully');
-};
+  return new Response(JSON.stringify({ success: true }), {
+    headers: { 'Content-Type': 'application/json' }
+  });
+}
