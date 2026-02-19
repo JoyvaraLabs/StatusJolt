@@ -1,29 +1,13 @@
-[env.production]
 name = "statusjolt"
 compatibility_date = "2024-11-01"
 compatibility_flags = ["nodejs_compat"]
 
-[[env.production.d1_databases]]
+[[d1_databases]]
 binding = "DB"
 database_name = "statusjolt"
-database_id = "placeholder-will-be-generated"
+database_id = "04cb4ba7-b7cf-4f38-8b90-c2fdbe0788ea"
 
-[env.production.vars]
-JWT_SECRET = "placeholder-will-be-set-in-dashboard"
+[vars]
+JWT_SECRET = "production-jwt-secret-change-this"
 STRIPE_SECRET_KEY = "placeholder-will-be-set-later"
 STRIPE_WEBHOOK_SECRET = "placeholder-will-be-set-later"
-
-[env.development]
-name = "statusjolt-dev"
-compatibility_date = "2024-11-01" 
-compatibility_flags = ["nodejs_compat"]
-
-[[env.development.d1_databases]]
-binding = "DB"
-database_name = "statusjolt-dev"
-database_id = "placeholder-will-be-generated"
-
-[env.development.vars]
-JWT_SECRET = "dev-secret-key-change-in-production"
-STRIPE_SECRET_KEY = "placeholder"
-STRIPE_WEBHOOK_SECRET = "placeholder"
