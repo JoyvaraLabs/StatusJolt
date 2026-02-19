@@ -27,24 +27,82 @@ import '../styles/global.css';
   <!-- Hero Section -->
   <section class="bg-gradient-to-br from-blue-50 to-indigo-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-      <div class="text-center">
-        <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-          Keep Your Customers
-          <span class="text-blue-600">Informed</span>
-        </h1>
-        <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-          Simple, fast status pages that keep your customers updated during incidents. 
-          Built on Cloudflare's global network for maximum reliability.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/signup" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-md text-lg font-medium">
-            Start Free Trial
-          </a>
-          <a href="#demo" class="border border-gray-300 hover:border-gray-400 text-gray-700 px-8 py-3 rounded-md text-lg font-medium">
-            View Demo
-          </a>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+            Keep Your Customers
+            <span class="text-blue-600">Informed</span>
+          </h1>
+          <p class="text-xl text-gray-600 mb-8">
+            Simple, fast status pages that keep your customers updated during incidents. 
+            Built on Cloudflare's global network for maximum reliability.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="/signup" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-md text-lg font-medium">
+              Start Free Trial
+            </a>
+            <a href="#demo" class="border border-gray-300 hover:border-gray-400 text-gray-700 px-8 py-3 rounded-md text-lg font-medium">
+              View Demo
+            </a>
+          </div>
+          <p class="text-sm text-gray-500 mt-4">Free forever plan • No credit card required</p>
         </div>
-        <p class="text-sm text-gray-500 mt-4">Free forever plan • No credit card required</p>
+        
+        <!-- Hero Visual Mockup -->
+        <div class="relative">
+          <div class="bg-white rounded-lg shadow-xl p-6 max-w-md mx-auto">
+            <!-- Mockup Header -->
+            <div class="flex items-center mb-6">
+              <div class="w-6 h-6 bg-blue-600 rounded mr-2 flex items-center justify-center">
+                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20 8l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold">Your Service Status</h3>
+            </div>
+            
+            <!-- Status Banner -->
+            <div class="bg-green-50 border border-green-200 rounded-lg p-3 mb-4">
+              <div class="flex items-center">
+                <svg class="w-5 h-5 text-green-600 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                </svg>
+                <span class="text-green-800 font-medium text-sm">All systems operational</span>
+              </div>
+            </div>
+            
+            <!-- Services List -->
+            <div class="space-y-3">
+              <div class="flex items-center justify-between py-2">
+                <div class="flex items-center">
+                  <div class="w-3 h-3 bg-green-400 rounded-full mr-3"></div>
+                  <span class="text-sm font-medium">Website</span>
+                </div>
+                <span class="text-green-600 text-xs">Operational</span>
+              </div>
+              
+              <div class="flex items-center justify-between py-2">
+                <div class="flex items-center">
+                  <div class="w-3 h-3 bg-green-400 rounded-full mr-3"></div>
+                  <span class="text-sm font-medium">API</span>
+                </div>
+                <span class="text-green-600 text-xs">Operational</span>
+              </div>
+              
+              <div class="flex items-center justify-between py-2">
+                <div class="flex items-center">
+                  <div class="w-3 h-3 bg-green-400 rounded-full mr-3"></div>
+                  <span class="text-sm font-medium">Database</span>
+                </div>
+                <span class="text-green-600 text-xs">Operational</span>
+              </div>
+            </div>
+            
+            <!-- Decorative elements -->
+            <div class="absolute -top-2 -right-2 w-4 h-4 bg-blue-200 rounded-full opacity-60"></div>
+            <div class="absolute -bottom-3 -left-3 w-6 h-6 bg-indigo-200 rounded-full opacity-40"></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -60,7 +118,9 @@ import '../styles/global.css';
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div class="text-center">
           <div class="bg-blue-100 w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-4">
-            <i data-lucide="zap" class="w-8 h-8 text-blue-600"></i>
+            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
           </div>
           <h3 class="text-xl font-semibold text-gray-900 mb-2">Lightning Fast</h3>
           <p class="text-gray-600">Built on Cloudflare's global CDN. Your status page loads instantly worldwide.</p>
@@ -68,7 +128,9 @@ import '../styles/global.css';
         
         <div class="text-center">
           <div class="bg-green-100 w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-4">
-            <i data-lucide="shield-check" class="w-8 h-8 text-green-600"></i>
+            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
           </div>
           <h3 class="text-xl font-semibold text-gray-900 mb-2">99.9% Uptime</h3>
           <p class="text-gray-600">When your services are down, your status page stays up. Guaranteed.</p>
@@ -76,7 +138,9 @@ import '../styles/global.css';
         
         <div class="text-center">
           <div class="bg-purple-100 w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-4">
-            <i data-lucide="bell" class="w-8 h-8 text-purple-600"></i>
+            <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5zM8.5 14v-3m4.5-3L8.5 17l4.5-4z"/>
+            </svg>
           </div>
           <h3 class="text-xl font-semibold text-gray-900 mb-2">Smart Notifications</h3>
           <p class="text-gray-600">Email and SMS alerts keep subscribers informed automatically.</p>
@@ -84,7 +148,9 @@ import '../styles/global.css';
         
         <div class="text-center">
           <div class="bg-orange-100 w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-4">
-            <i data-lucide="palette" class="w-8 h-8 text-orange-600"></i>
+            <svg class="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM7 3H5a2 2 0 00-2 2v12a4 4 0 004 4h2a2 2 0 002-2V5a2 2 0 00-2-2zM9 9h6l-6 6V9z"/>
+            </svg>
           </div>
           <h3 class="text-xl font-semibold text-gray-900 mb-2">Custom Branding</h3>
           <p class="text-gray-600">Match your brand colors and use your own domain.</p>
@@ -92,7 +158,9 @@ import '../styles/global.css';
         
         <div class="text-center">
           <div class="bg-red-100 w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-4">
-            <i data-lucide="activity" class="w-8 h-8 text-red-600"></i>
+            <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+            </svg>
           </div>
           <h3 class="text-xl font-semibold text-gray-900 mb-2">Real-time Updates</h3>
           <p class="text-gray-600">Update incidents instantly. Changes appear in real-time.</p>
@@ -100,7 +168,9 @@ import '../styles/global.css';
         
         <div class="text-center">
           <div class="bg-teal-100 w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-4">
-            <i data-lucide="code" class="w-8 h-8 text-teal-600"></i>
+            <svg class="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+            </svg>
           </div>
           <h3 class="text-xl font-semibold text-gray-900 mb-2">Developer API</h3>
           <p class="text-gray-600">Automate status updates with our simple REST API.</p>
@@ -126,7 +196,9 @@ import '../styles/global.css';
           
           <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
             <div class="flex items-center">
-              <i data-lucide="check-circle" class="w-5 h-5 text-green-600 mr-2"></i>
+              <svg class="w-5 h-5 text-green-600 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+              </svg>
               <span class="text-green-800 font-medium">All systems operational</span>
             </div>
           </div>
@@ -162,7 +234,9 @@ import '../styles/global.css';
             <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
               <div class="flex items-start">
                 <div class="flex-shrink-0">
-                  <i data-lucide="alert-triangle" class="w-5 h-5 text-yellow-600"></i>
+                  <svg class="w-5 h-5 text-yellow-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
+                  </svg>
                 </div>
                 <div class="ml-3">
                   <h5 class="font-medium text-yellow-800">Payment Processing Issues</h5>
@@ -196,19 +270,27 @@ import '../styles/global.css';
           
           <ul class="space-y-3 mb-8">
             <li class="flex items-center">
-              <i data-lucide="check" class="w-5 h-5 text-green-600 mr-3"></i>
+              <svg class="w-5 h-5 text-green-600 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+              </svg>
               <span>1 status page</span>
             </li>
             <li class="flex items-center">
-              <i data-lucide="check" class="w-5 h-5 text-green-600 mr-3"></i>
+              <svg class="w-5 h-5 text-green-600 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+              </svg>
               <span>3 components</span>
             </li>
             <li class="flex items-center">
-              <i data-lucide="check" class="w-5 h-5 text-green-600 mr-3"></i>
+              <svg class="w-5 h-5 text-green-600 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+              </svg>
               <span>Basic incident management</span>
             </li>
             <li class="flex items-center">
-              <i data-lucide="check" class="w-5 h-5 text-green-600 mr-3"></i>
+              <svg class="w-5 h-5 text-green-600 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+              </svg>
               <span>StatusJolt subdomain</span>
             </li>
           </ul>
@@ -232,27 +314,39 @@ import '../styles/global.css';
           
           <ul class="space-y-3 mb-8">
             <li class="flex items-center">
-              <i data-lucide="check" class="w-5 h-5 text-white mr-3"></i>
+              <svg class="w-5 h-5 text-white mr-3" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+              </svg>
               <span>Unlimited status pages</span>
             </li>
             <li class="flex items-center">
-              <i data-lucide="check" class="w-5 h-5 text-white mr-3"></i>
+              <svg class="w-5 h-5 text-white mr-3" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+              </svg>
               <span>10 components per page</span>
             </li>
             <li class="flex items-center">
-              <i data-lucide="check" class="w-5 h-5 text-white mr-3"></i>
+              <svg class="w-5 h-5 text-white mr-3" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+              </svg>
               <span>Custom domain</span>
             </li>
             <li class="flex items-center">
-              <i data-lucide="check" class="w-5 h-5 text-white mr-3"></i>
+              <svg class="w-5 h-5 text-white mr-3" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+              </svg>
               <span>Email notifications</span>
             </li>
             <li class="flex items-center">
-              <i data-lucide="check" class="w-5 h-5 text-white mr-3"></i>
+              <svg class="w-5 h-5 text-white mr-3" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+              </svg>
               <span>Custom branding</span>
             </li>
             <li class="flex items-center">
-              <i data-lucide="check" class="w-5 h-5 text-white mr-3"></i>
+              <svg class="w-5 h-5 text-white mr-3" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+              </svg>
               <span>API access</span>
             </li>
           </ul>
