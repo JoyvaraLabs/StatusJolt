@@ -23,7 +23,7 @@ const { subdomain } = Astro.params;
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <div class="flex items-center">
           <div id="page-logo" class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mr-4">
-            <i data-lucide="monitor" class="w-6 h-6 text-white"></i>
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
           </div>
           <div>
             <h1 id="page-title" class="text-2xl font-bold text-gray-900">Loading...</h1>
@@ -94,7 +94,7 @@ const { subdomain } = Astro.params;
 
   <div id="error-page" class="hidden min-h-screen bg-gray-50 flex items-center justify-center">
     <div class="text-center">
-      <i data-lucide="alert-circle" class="w-16 h-16 text-red-500 mx-auto mb-4"></i>
+      <svg class="w-16 h-16 text-red-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
       <h2 class="text-2xl font-bold text-gray-900 mb-2">Status Page Not Found</h2>
       <p class="text-gray-600 mb-4">The requested status page could not be found.</p>
       <a href="https://statusjolt.com" class="text-blue-600 hover:text-blue-700">Create your own status page</a>
@@ -145,8 +145,7 @@ async function loadStatusPage(subdomain) {
   // Setup subscription form
   setupSubscriptionForm(data.page.id);
   
-  // Initialize Lucide icons
-  lucide.createIcons();
+  // Icons are now inline SVGs
 }
 
 function getOverallStatus(components, incidents) {

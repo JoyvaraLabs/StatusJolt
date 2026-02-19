@@ -16,7 +16,7 @@ import '../styles/global.css';
             <div class="relative">
               <button id="user-menu-button" class="flex items-center text-sm text-gray-700 hover:text-gray-900">
                 <span id="user-name">Loading...</span>
-                <i data-lucide="chevron-down" class="w-4 h-4 ml-1"></i>
+                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6 9 6 6 6-6"/></svg>
               </button>
               <div id="user-menu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
                 <a href="/settings" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
@@ -40,7 +40,7 @@ import '../styles/global.css';
         <div class="bg-white p-6 rounded-lg shadow">
           <div class="flex items-center">
             <div class="p-2 bg-blue-100 rounded-lg">
-              <i data-lucide="monitor" class="w-6 h-6 text-blue-600"></i>
+              <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
             </div>
             <div class="ml-4">
               <p class="text-sm text-gray-600">Status Pages</p>
@@ -52,7 +52,7 @@ import '../styles/global.css';
         <div class="bg-white p-6 rounded-lg shadow">
           <div class="flex items-center">
             <div class="p-2 bg-green-100 rounded-lg">
-              <i data-lucide="server" class="w-6 h-6 text-green-600"></i>
+              <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></svg>
             </div>
             <div class="ml-4">
               <p class="text-sm text-gray-600">Components</p>
@@ -64,7 +64,7 @@ import '../styles/global.css';
         <div class="bg-white p-6 rounded-lg shadow">
           <div class="flex items-center">
             <div class="p-2 bg-red-100 rounded-lg">
-              <i data-lucide="alert-circle" class="w-6 h-6 text-red-600"></i>
+              <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
             </div>
             <div class="ml-4">
               <p class="text-sm text-gray-600">Active Incidents</p>
@@ -76,7 +76,7 @@ import '../styles/global.css';
         <div class="bg-white p-6 rounded-lg shadow">
           <div class="flex items-center">
             <div class="p-2 bg-purple-100 rounded-lg">
-              <i data-lucide="users" class="w-6 h-6 text-purple-600"></i>
+              <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m22 21-2-2"/><path d="m16 16 2 2"/><path d="M22 13a5 5 0 0 0-3-3"/></svg>
             </div>
             <div class="ml-4">
               <p class="text-sm text-gray-600">Subscribers</p>
@@ -92,7 +92,7 @@ import '../styles/global.css';
           <div class="flex justify-between items-center">
             <h3 class="text-lg font-medium text-gray-900">Your Status Pages</h3>
             <button id="new-page-btn" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium">
-              <i data-lucide="plus" class="w-4 h-4 mr-2 inline"></i>
+              <svg class="w-4 h-4 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14m-7-7h14"/></svg>
               New Status Page
             </button>
           </div>
@@ -273,7 +273,7 @@ function renderStatusPages(pages: any[]) {
   if (pages.length === 0) {
     container.innerHTML = `
       <div class="p-6 text-center">
-        <i data-lucide="monitor" class="w-12 h-12 text-gray-400 mx-auto mb-4"></i>
+        <svg class="w-12 h-12 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
         <p class="text-gray-500 mb-4">No status pages yet</p>
         <button onclick="document.getElementById('new-page-btn').click()" class="text-blue-600 hover:text-blue-700">Create your first status page</button>
       </div>
@@ -287,7 +287,7 @@ function renderStatusPages(pages: any[]) {
         <div class="flex items-center">
           <div class="flex-shrink-0">
             <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-              <i data-lucide="monitor" class="w-5 h-5 text-blue-600"></i>
+              <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
             </div>
           </div>
           <div class="ml-4">
@@ -304,8 +304,7 @@ function renderStatusPages(pages: any[]) {
     </div>
   `).join('');
   
-  // Reinitialize Lucide icons
-  lucide.createIcons();
+  // Icons are now inline SVGs, no need for initialization
 }
 
 function renderRecentActivity(activity: any[]) {
@@ -325,7 +324,7 @@ function renderRecentActivity(activity: any[]) {
     <div class="p-4 flex items-center space-x-3">
       <div class="flex-shrink-0">
         <div class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">
-          <i data-lucide="${getActivityIcon(item.type)}" class="w-4 h-4 text-gray-600"></i>
+          ${getActivityIconSvg(item.type)}
         </div>
       </div>
       <div class="flex-1 min-w-0">
@@ -335,17 +334,17 @@ function renderRecentActivity(activity: any[]) {
     </div>
   `).join('');
   
-  lucide.createIcons();
+  // Icons are now inline SVGs
 }
 
-function getActivityIcon(type: string) {
+function getActivityIconSvg(type: string) {
   const icons = {
-    'incident': 'alert-circle',
-    'component': 'server',
-    'page': 'monitor',
-    'user': 'user',
+    'incident': '<svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>',
+    'component': '<svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></svg>',
+    'page': '<svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>',
+    'user': '<svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-3-3H7a4 4 0 0 0-3 3v2"/><circle cx="12" cy="7" r="4"/></svg>',
   };
-  return icons[type] || 'activity';
+  return icons[type] || '<svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg>';
 }
 
 function formatDate(dateString: string) {
