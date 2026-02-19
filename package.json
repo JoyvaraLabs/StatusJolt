@@ -1,0 +1,39 @@
+{
+  "name": "statusjolt",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Simple, fast status pages for your business",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "deploy": "npm run build && npx wrangler pages deploy dist --project-name statusjolt",
+    "deploy:dev": "npm run build && npx wrangler pages deploy dist --project-name statusjolt-dev",
+    "db:create": "npx wrangler d1 create statusjolt",
+    "db:create:dev": "npx wrangler d1 create statusjolt-dev", 
+    "db:migrate": "npx wrangler d1 execute statusjolt --file=./schema.sql",
+    "db:migrate:dev": "npx wrangler d1 execute statusjolt-dev --file=./schema.sql",
+    "db:migrate:local": "npx wrangler d1 execute statusjolt --local --file=./schema.sql"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^12.6.12",
+    "@cloudflare/workers-types": "^4.20260219.0",
+    "@tailwindcss/vite": "^4.2.0",
+    "astro": "^5.17.1",
+    "bcryptjs": "^3.0.3",
+    "jose": "^6.1.3",
+    "jsonwebtoken": "^9.0.3",
+    "tailwindcss": "^4.2.0",
+    "wrangler": "^4.67.0"
+  },
+  "keywords": [
+    "status-page",
+    "monitoring",
+    "cloudflare",
+    "astro",
+    "saas"
+  ],
+  "author": "JoyvaraLabs",
+  "license": "MIT"
+}

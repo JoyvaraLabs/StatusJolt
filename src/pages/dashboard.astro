@@ -1,0 +1,354 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/global.css';
+---
+
+<Layout title="Dashboard - StatusJolt">
+  <div class="min-h-screen bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex items-center">
+            <h1 class="text-2xl font-bold text-blue-600">StatusJolt</h1>
+          </div>
+          <div class="flex items-center space-x-4">
+            <div class="relative">
+              <button id="user-menu-button" class="flex items-center text-sm text-gray-700 hover:text-gray-900">
+                <span id="user-name">Loading...</span>
+                <i data-lucide="chevron-down" class="w-4 h-4 ml-1"></i>
+              </button>
+              <div id="user-menu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
+                <a href="/settings" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
+                <a href="#" id="logout-btn" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <!-- Welcome Section -->
+      <div class="mb-8">
+        <h2 class="text-3xl font-bold text-gray-900 mb-2">Dashboard</h2>
+        <p class="text-gray-600">Manage your status pages and monitor your services</p>
+      </div>
+
+      <!-- Quick Stats -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div class="bg-white p-6 rounded-lg shadow">
+          <div class="flex items-center">
+            <div class="p-2 bg-blue-100 rounded-lg">
+              <i data-lucide="monitor" class="w-6 h-6 text-blue-600"></i>
+            </div>
+            <div class="ml-4">
+              <p class="text-sm text-gray-600">Status Pages</p>
+              <p id="pages-count" class="text-2xl font-bold text-gray-900">-</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-white p-6 rounded-lg shadow">
+          <div class="flex items-center">
+            <div class="p-2 bg-green-100 rounded-lg">
+              <i data-lucide="server" class="w-6 h-6 text-green-600"></i>
+            </div>
+            <div class="ml-4">
+              <p class="text-sm text-gray-600">Components</p>
+              <p id="components-count" class="text-2xl font-bold text-gray-900">-</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-white p-6 rounded-lg shadow">
+          <div class="flex items-center">
+            <div class="p-2 bg-red-100 rounded-lg">
+              <i data-lucide="alert-circle" class="w-6 h-6 text-red-600"></i>
+            </div>
+            <div class="ml-4">
+              <p class="text-sm text-gray-600">Active Incidents</p>
+              <p id="incidents-count" class="text-2xl font-bold text-gray-900">-</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-white p-6 rounded-lg shadow">
+          <div class="flex items-center">
+            <div class="p-2 bg-purple-100 rounded-lg">
+              <i data-lucide="users" class="w-6 h-6 text-purple-600"></i>
+            </div>
+            <div class="ml-4">
+              <p class="text-sm text-gray-600">Subscribers</p>
+              <p id="subscribers-count" class="text-2xl font-bold text-gray-900">-</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Status Pages -->
+      <div class="bg-white rounded-lg shadow">
+        <div class="p-6 border-b border-gray-200">
+          <div class="flex justify-between items-center">
+            <h3 class="text-lg font-medium text-gray-900">Your Status Pages</h3>
+            <button id="new-page-btn" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium">
+              <i data-lucide="plus" class="w-4 h-4 mr-2 inline"></i>
+              New Status Page
+            </button>
+          </div>
+        </div>
+        
+        <div id="status-pages-list" class="divide-y divide-gray-200">
+          <!-- Status pages will be loaded here -->
+          <div class="p-6 text-center">
+            <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+            <p class="mt-2 text-gray-500">Loading your status pages...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Activity -->
+      <div class="mt-8 bg-white rounded-lg shadow">
+        <div class="p-6 border-b border-gray-200">
+          <h3 class="text-lg font-medium text-gray-900">Recent Activity</h3>
+        </div>
+        
+        <div id="recent-activity" class="divide-y divide-gray-200">
+          <!-- Activity will be loaded here -->
+          <div class="p-6 text-center">
+            <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600 mx-auto"></div>
+            <p class="mt-2 text-gray-500 text-sm">Loading activity...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- New Status Page Modal -->
+  <div id="new-page-modal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
+    <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+      <div class="mt-3">
+        <h3 class="text-lg font-medium text-gray-900 text-center mb-4">Create New Status Page</h3>
+        <form id="new-page-form" class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Page Name</label>
+            <input type="text" name="name" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="My Company Status">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Subdomain</label>
+            <div class="mt-1 flex rounded-md shadow-sm">
+              <input type="text" name="subdomain" required class="flex-1 min-w-0 block w-full px-3 py-2 rounded-none rounded-l-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="mycompany">
+              <span class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">.statusjolt.com</span>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Description (optional)</label>
+            <textarea name="description" rows="2" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Status page for My Company services"></textarea>
+          </div>
+          <div class="flex space-x-3">
+            <button type="button" id="cancel-new-page" class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded">
+              Cancel
+            </button>
+            <button type="submit" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              Create
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+// Check authentication on page load
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    // Verify user is logged in
+    const response = await fetch('/api/auth/me');
+    if (!response.ok) {
+      window.location.href = '/login';
+      return;
+    }
+    
+    const { user } = await response.json();
+    document.getElementById('user-name')!.textContent = user.name;
+    
+    // Load dashboard data
+    await loadDashboardData();
+    
+  } catch (error) {
+    console.error('Auth check failed:', error);
+    window.location.href = '/login';
+  }
+});
+
+// User menu toggle
+document.getElementById('user-menu-button')?.addEventListener('click', () => {
+  const menu = document.getElementById('user-menu');
+  menu?.classList.toggle('hidden');
+});
+
+// Logout
+document.getElementById('logout-btn')?.addEventListener('click', async (e) => {
+  e.preventDefault();
+  await fetch('/api/auth/logout', { method: 'POST' });
+  window.location.href = '/';
+});
+
+// New page modal
+document.getElementById('new-page-btn')?.addEventListener('click', () => {
+  document.getElementById('new-page-modal')?.classList.remove('hidden');
+});
+
+document.getElementById('cancel-new-page')?.addEventListener('click', () => {
+  document.getElementById('new-page-modal')?.classList.add('hidden');
+});
+
+// New page form
+document.getElementById('new-page-form')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  
+  const formData = new FormData(e.target as HTMLFormElement);
+  const data = {
+    name: formData.get('name'),
+    subdomain: formData.get('subdomain'),
+    description: formData.get('description'),
+  };
+  
+  try {
+    const response = await fetch('/api/status-pages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    
+    if (response.ok) {
+      document.getElementById('new-page-modal')?.classList.add('hidden');
+      await loadDashboardData();
+    } else {
+      const error = await response.text();
+      alert('Error: ' + error);
+    }
+  } catch (error) {
+    alert('Network error. Please try again.');
+  }
+});
+
+// Load dashboard data
+async function loadDashboardData() {
+  try {
+    // Load stats
+    const statsResponse = await fetch('/api/dashboard/stats');
+    if (statsResponse.ok) {
+      const stats = await statsResponse.json();
+      document.getElementById('pages-count')!.textContent = stats.pages;
+      document.getElementById('components-count')!.textContent = stats.components;
+      document.getElementById('incidents-count')!.textContent = stats.activeIncidents;
+      document.getElementById('subscribers-count')!.textContent = stats.subscribers;
+    }
+    
+    // Load status pages
+    const pagesResponse = await fetch('/api/status-pages');
+    if (pagesResponse.ok) {
+      const pages = await pagesResponse.json();
+      renderStatusPages(pages);
+    }
+    
+    // Load recent activity
+    const activityResponse = await fetch('/api/dashboard/activity');
+    if (activityResponse.ok) {
+      const activity = await activityResponse.json();
+      renderRecentActivity(activity);
+    }
+    
+  } catch (error) {
+    console.error('Failed to load dashboard data:', error);
+  }
+}
+
+function renderStatusPages(pages: any[]) {
+  const container = document.getElementById('status-pages-list');
+  if (!container) return;
+  
+  if (pages.length === 0) {
+    container.innerHTML = `
+      <div class="p-6 text-center">
+        <i data-lucide="monitor" class="w-12 h-12 text-gray-400 mx-auto mb-4"></i>
+        <p class="text-gray-500 mb-4">No status pages yet</p>
+        <button onclick="document.getElementById('new-page-btn').click()" class="text-blue-600 hover:text-blue-700">Create your first status page</button>
+      </div>
+    `;
+    return;
+  }
+  
+  container.innerHTML = pages.map(page => `
+    <div class="p-6 hover:bg-gray-50">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center">
+          <div class="flex-shrink-0">
+            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+              <i data-lucide="monitor" class="w-5 h-5 text-blue-600"></i>
+            </div>
+          </div>
+          <div class="ml-4">
+            <h4 class="text-lg font-medium text-gray-900">${page.name}</h4>
+            <p class="text-sm text-gray-500">${page.subdomain}.statusjolt.com</p>
+            <p class="text-sm text-gray-600 mt-1">${page.description || 'No description'}</p>
+          </div>
+        </div>
+        <div class="flex items-center space-x-2">
+          <a href="https://${page.subdomain}.statusjolt.com" target="_blank" class="text-blue-600 hover:text-blue-700 text-sm">View Public Page</a>
+          <a href="/status-page/${page.id}" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm">Manage</a>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  
+  // Reinitialize Lucide icons
+  lucide.createIcons();
+}
+
+function renderRecentActivity(activity: any[]) {
+  const container = document.getElementById('recent-activity');
+  if (!container) return;
+  
+  if (activity.length === 0) {
+    container.innerHTML = `
+      <div class="p-6 text-center">
+        <p class="text-gray-500">No recent activity</p>
+      </div>
+    `;
+    return;
+  }
+  
+  container.innerHTML = activity.slice(0, 5).map(item => `
+    <div class="p-4 flex items-center space-x-3">
+      <div class="flex-shrink-0">
+        <div class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">
+          <i data-lucide="${getActivityIcon(item.type)}" class="w-4 h-4 text-gray-600"></i>
+        </div>
+      </div>
+      <div class="flex-1 min-w-0">
+        <p class="text-sm text-gray-900">${item.message}</p>
+        <p class="text-xs text-gray-500">${formatDate(item.created_at)}</p>
+      </div>
+    </div>
+  `).join('');
+  
+  lucide.createIcons();
+}
+
+function getActivityIcon(type: string) {
+  const icons = {
+    'incident': 'alert-circle',
+    'component': 'server',
+    'page': 'monitor',
+    'user': 'user',
+  };
+  return icons[type] || 'activity';
+}
+
+function formatDate(dateString: string) {
+  return new Date(dateString).toLocaleString();
+}
+</script>

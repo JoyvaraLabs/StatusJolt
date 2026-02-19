@@ -1,0 +1,209 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/global.css';
+---
+
+<Layout title="Sign Up - StatusJolt">
+  <div class="min-h-screen flex">
+    <!-- Left side - Form -->
+    <div class="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
+      <div class="mx-auto w-full max-w-sm lg:w-96">
+        <div>
+          <h2 class="text-3xl font-bold text-gray-900">Create your account</h2>
+          <p class="mt-2 text-sm text-gray-600">
+            Start monitoring your services in minutes
+          </p>
+        </div>
+
+        <div class="mt-8">
+          <form id="signup-form" class="space-y-6">
+            <div>
+              <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+              <div class="mt-1">
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  required
+                  class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="John Doe"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
+              <div class="mt-1">
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="john@company.com"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+              <div class="mt-1">
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  required
+                  minlength="8"
+                  class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="••••••••"
+                />
+              </div>
+              <p class="mt-1 text-sm text-gray-500">Must be at least 8 characters</p>
+            </div>
+
+            <div>
+              <label for="company" class="block text-sm font-medium text-gray-700">Company</label>
+              <div class="mt-1">
+                <input
+                  id="company"
+                  name="company"
+                  type="text"
+                  class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="Acme Corp"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label for="plan" class="block text-sm font-medium text-gray-700">Plan</label>
+              <div class="mt-1">
+                <select
+                  id="plan"
+                  name="plan"
+                  class="block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                >
+                  <option value="free">Free (1 page, 3 components)</option>
+                  <option value="pro">Pro - $9/month (Unlimited pages, custom domain)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="flex items-center">
+              <input
+                id="terms"
+                name="terms"
+                type="checkbox"
+                required
+                class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+              />
+              <label for="terms" class="ml-2 block text-sm text-gray-900">
+                I agree to the <a href="/terms" class="text-blue-600 hover:text-blue-500">Terms of Service</a> and <a href="/privacy" class="text-blue-600 hover:text-blue-500">Privacy Policy</a>
+              </label>
+            </div>
+
+            <div>
+              <button
+                type="submit"
+                class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
+              >
+                <span id="signup-text">Create Account</span>
+                <svg id="signup-loading" class="hidden animate-spin -mr-1 ml-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+              </button>
+            </div>
+          </form>
+
+          <div class="mt-6">
+            <div class="text-center">
+              <span class="text-sm text-gray-600">Already have an account?</span>
+              <a href="/login" class="font-medium text-blue-600 hover:text-blue-500 ml-1">Sign in</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right side - Benefits -->
+    <div class="hidden lg:block relative w-0 flex-1">
+      <div class="absolute inset-0 bg-gradient-to-br from-blue-600 to-purple-700 flex items-center justify-center">
+        <div class="max-w-md text-white p-8">
+          <h3 class="text-2xl font-bold mb-6">Join thousands of companies</h3>
+          
+          <div class="space-y-4">
+            <div class="flex items-center">
+              <i data-lucide="check-circle" class="w-5 h-5 mr-3 text-blue-200"></i>
+              <span>Set up in under 5 minutes</span>
+            </div>
+            <div class="flex items-center">
+              <i data-lucide="check-circle" class="w-5 h-5 mr-3 text-blue-200"></i>
+              <span>99.9% uptime guarantee</span>
+            </div>
+            <div class="flex items-center">
+              <i data-lucide="check-circle" class="w-5 h-5 mr-3 text-blue-200"></i>
+              <span>Hosted on Cloudflare's global network</span>
+            </div>
+            <div class="flex items-center">
+              <i data-lucide="check-circle" class="w-5 h-5 mr-3 text-blue-200"></i>
+              <span>Free forever plan available</span>
+            </div>
+          </div>
+          
+          <div class="mt-8 p-4 bg-white/10 rounded-lg">
+            <p class="text-sm italic">"StatusJolt helped us communicate better with our customers during our last incident. Setup was incredibly easy."</p>
+            <p class="text-xs mt-2 text-blue-200">- Sarah, CTO at TechCorp</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+document.getElementById('signup-form')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  
+  const form = e.target as HTMLFormElement;
+  const formData = new FormData(form);
+  const button = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+  const loadingSpinner = document.getElementById('signup-loading');
+  const buttonText = document.getElementById('signup-text');
+  
+  // Show loading state
+  button.disabled = true;
+  loadingSpinner?.classList.remove('hidden');
+  buttonText!.textContent = 'Creating Account...';
+  
+  try {
+    const response = await fetch('/api/auth/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: formData.get('name'),
+        email: formData.get('email'),
+        password: formData.get('password'),
+        company: formData.get('company'),
+        plan: formData.get('plan'),
+      }),
+    });
+    
+    if (response.ok) {
+      // Redirect to dashboard or onboarding
+      window.location.href = '/dashboard';
+    } else {
+      const error = await response.text();
+      alert('Error: ' + error);
+    }
+  } catch (error) {
+    alert('Network error. Please try again.');
+  } finally {
+    // Reset loading state
+    button.disabled = false;
+    loadingSpinner?.classList.add('hidden');
+    buttonText!.textContent = 'Create Account';
+  }
+});
+</script>

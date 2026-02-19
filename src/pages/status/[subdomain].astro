@@ -1,0 +1,327 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import '../../styles/global.css';
+
+// This will be dynamically populated by the API
+const { subdomain } = Astro.params;
+
+// For now, we'll let the client-side JavaScript handle loading the status page data
+// In a full implementation, you might want to fetch this data server-side for better SEO
+---
+
+<Layout title={`Status - Loading...`}>
+  <div id="loading" class="min-h-screen bg-gray-50 flex items-center justify-center">
+    <div class="text-center">
+      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+      <p class="text-gray-600">Loading status page...</p>
+    </div>
+  </div>
+
+  <div id="status-page" class="hidden min-h-screen bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div class="flex items-center">
+          <div id="page-logo" class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mr-4">
+            <i data-lucide="monitor" class="w-6 h-6 text-white"></i>
+          </div>
+          <div>
+            <h1 id="page-title" class="text-2xl font-bold text-gray-900">Loading...</h1>
+            <p id="page-description" class="text-gray-600">Loading...</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Overall Status -->
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div id="overall-status" class="bg-white rounded-lg shadow p-6 mb-8">
+        <!-- Will be populated by JavaScript -->
+      </div>
+
+      <!-- Components -->
+      <div class="bg-white rounded-lg shadow mb-8">
+        <div class="p-6 border-b border-gray-200">
+          <h2 class="text-xl font-semibold text-gray-900">Components</h2>
+        </div>
+        <div id="components-list" class="divide-y divide-gray-200">
+          <!-- Will be populated by JavaScript -->
+        </div>
+      </div>
+
+      <!-- Incidents -->
+      <div class="bg-white rounded-lg shadow mb-8">
+        <div class="p-6 border-b border-gray-200">
+          <h2 class="text-xl font-semibold text-gray-900">Recent Incidents</h2>
+        </div>
+        <div id="incidents-list" class="divide-y divide-gray-200">
+          <!-- Will be populated by JavaScript -->
+        </div>
+      </div>
+
+      <!-- Subscribe -->
+      <div class="bg-white rounded-lg shadow">
+        <div class="p-6">
+          <h3 class="text-lg font-medium text-gray-900 mb-4">Subscribe to Updates</h3>
+          <p class="text-gray-600 mb-4">Get notified when incidents are created, updated, or resolved.</p>
+          
+          <form id="subscribe-form" class="flex">
+            <input
+              type="email"
+              name="email"
+              required
+              class="flex-1 min-w-0 block w-full px-3 py-2 rounded-none rounded-l-md border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+              placeholder="your@email.com"
+            />
+            <button
+              type="submit"
+              class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-r-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            >
+              Subscribe
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 py-12 mt-16">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <p>Powered by <a href="https://statusjolt.com" class="text-blue-400 hover:text-blue-300">StatusJolt</a></p>
+      </div>
+    </footer>
+  </div>
+
+  <div id="error-page" class="hidden min-h-screen bg-gray-50 flex items-center justify-center">
+    <div class="text-center">
+      <i data-lucide="alert-circle" class="w-16 h-16 text-red-500 mx-auto mb-4"></i>
+      <h2 class="text-2xl font-bold text-gray-900 mb-2">Status Page Not Found</h2>
+      <p class="text-gray-600 mb-4">The requested status page could not be found.</p>
+      <a href="https://statusjolt.com" class="text-blue-600 hover:text-blue-700">Create your own status page</a>
+    </div>
+  </div>
+</Layout>
+
+<script define:vars={{ subdomain }}>
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    await loadStatusPage(subdomain);
+  } catch (error) {
+    console.error('Error loading status page:', error);
+    showError();
+  }
+});
+
+async function loadStatusPage(subdomain) {
+  const response = await fetch(`/api/public/status/${subdomain}`);
+  
+  if (!response.ok) {
+    throw new Error('Status page not found');
+  }
+  
+  const data = await response.json();
+  
+  // Update page title
+  document.title = `${data.page.name} - Status`;
+  
+  // Hide loading, show content
+  document.getElementById('loading').classList.add('hidden');
+  document.getElementById('status-page').classList.remove('hidden');
+  
+  // Populate page info
+  document.getElementById('page-title').textContent = data.page.name;
+  document.getElementById('page-description').textContent = data.page.description;
+  
+  // Determine overall status
+  const overallStatus = getOverallStatus(data.components, data.incidents);
+  renderOverallStatus(overallStatus);
+  
+  // Render components
+  renderComponents(data.components);
+  
+  // Render incidents
+  renderIncidents(data.incidents);
+  
+  // Setup subscription form
+  setupSubscriptionForm(data.page.id);
+  
+  // Initialize Lucide icons
+  lucide.createIcons();
+}
+
+function getOverallStatus(components, incidents) {
+  // Check for active incidents
+  const activeIncidents = incidents.filter(i => i.status !== 'resolved');
+  
+  if (activeIncidents.some(i => i.impact === 'critical')) {
+    return { status: 'major_outage', message: 'We are experiencing a major service disruption' };
+  }
+  
+  if (activeIncidents.some(i => i.impact === 'major')) {
+    return { status: 'partial_outage', message: 'We are experiencing service issues' };
+  }
+  
+  if (activeIncidents.length > 0) {
+    return { status: 'degraded', message: 'Some services are experiencing issues' };
+  }
+  
+  // Check component statuses
+  const degradedComponents = components.filter(c => c.status !== 'operational');
+  
+  if (degradedComponents.some(c => c.status === 'major_outage')) {
+    return { status: 'major_outage', message: 'We are experiencing a major service disruption' };
+  }
+  
+  if (degradedComponents.some(c => c.status === 'partial_outage')) {
+    return { status: 'partial_outage', message: 'Some services are currently unavailable' };
+  }
+  
+  if (degradedComponents.length > 0) {
+    return { status: 'degraded', message: 'Some services are experiencing degraded performance' };
+  }
+  
+  return { status: 'operational', message: 'All systems operational' };
+}
+
+function renderOverallStatus(status) {
+  const container = document.getElementById('overall-status');
+  
+  const statusConfig = {
+    operational: { color: 'green', icon: 'check-circle' },
+    degraded: { color: 'yellow', icon: 'alert-triangle' },
+    partial_outage: { color: 'red', icon: 'x-circle' },
+    major_outage: { color: 'red', icon: 'alert-circle' }
+  };
+  
+  const config = statusConfig[status.status];
+  
+  container.innerHTML = `
+    <div class="flex items-center">
+      <div class="flex-shrink-0">
+        <i data-lucide="${config.icon}" class="w-6 h-6 text-${config.color}-600"></i>
+      </div>
+      <div class="ml-3">
+        <h3 class="text-lg font-medium text-${config.color}-800">${status.message}</h3>
+      </div>
+    </div>
+  `;
+}
+
+function renderComponents(components) {
+  const container = document.getElementById('components-list');
+  
+  if (components.length === 0) {
+    container.innerHTML = '<div class="p-6 text-center text-gray-500">No components to display</div>';
+    return;
+  }
+  
+  container.innerHTML = components.map(component => {
+    const statusConfig = {
+      operational: { color: 'green', text: 'Operational' },
+      degraded: { color: 'yellow', text: 'Degraded Performance' },
+      partial_outage: { color: 'red', text: 'Partial Outage' },
+      major_outage: { color: 'red', text: 'Major Outage' }
+    };
+    
+    const config = statusConfig[component.status];
+    
+    return `
+      <div class="p-4 flex items-center justify-between">
+        <div class="flex items-center">
+          <div class="w-3 h-3 bg-${config.color}-400 rounded-full mr-3"></div>
+          <div>
+            <h4 class="font-medium text-gray-900">${component.name}</h4>
+            ${component.description ? `<p class="text-sm text-gray-500">${component.description}</p>` : ''}
+          </div>
+        </div>
+        <span class="text-sm text-${config.color}-600">${config.text}</span>
+      </div>
+    `;
+  }).join('');
+}
+
+function renderIncidents(incidents) {
+  const container = document.getElementById('incidents-list');
+  
+  // Show recent incidents (last 30 days)
+  const recentIncidents = incidents.filter(incident => {
+    const incidentDate = new Date(incident.created_at);
+    const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+    return incidentDate > thirtyDaysAgo;
+  });
+  
+  if (recentIncidents.length === 0) {
+    container.innerHTML = '<div class="p-6 text-center text-gray-500">No recent incidents</div>';
+    return;
+  }
+  
+  container.innerHTML = recentIncidents.map(incident => {
+    const statusConfig = {
+      investigating: { color: 'yellow', text: 'Investigating' },
+      identified: { color: 'orange', text: 'Identified' },
+      monitoring: { color: 'blue', text: 'Monitoring' },
+      resolved: { color: 'green', text: 'Resolved' }
+    };
+    
+    const config = statusConfig[incident.status];
+    
+    return `
+      <div class="p-6">
+        <div class="flex items-start">
+          <div class="flex-shrink-0">
+            <div class="w-3 h-3 bg-${config.color}-400 rounded-full mt-2"></div>
+          </div>
+          <div class="ml-4 flex-1">
+            <h4 class="text-lg font-medium text-gray-900">${incident.title}</h4>
+            <p class="text-gray-600 mt-1">${incident.description}</p>
+            <div class="mt-2 flex items-center text-sm text-gray-500">
+              <span class="bg-${config.color}-100 text-${config.color}-800 px-2 py-1 rounded-full">${config.text}</span>
+              <span class="ml-4">${formatDate(incident.created_at)}</span>
+              ${incident.resolved_at ? `<span class="ml-4">Resolved ${formatDate(incident.resolved_at)}</span>` : ''}
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function setupSubscriptionForm(statusPageId) {
+  const form = document.getElementById('subscribe-form');
+  
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(form);
+    const email = formData.get('email');
+    
+    try {
+      const response = await fetch('/api/public/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ statusPageId, email })
+      });
+      
+      if (response.ok) {
+        alert('Successfully subscribed! Check your email to confirm.');
+        form.reset();
+      } else {
+        const error = await response.text();
+        alert('Error: ' + error);
+      }
+    } catch (error) {
+      alert('Network error. Please try again.');
+    }
+  });
+}
+
+function formatDate(dateString) {
+  return new Date(dateString).toLocaleString();
+}
+
+function showError() {
+  document.getElementById('loading').classList.add('hidden');
+  document.getElementById('error-page').classList.remove('hidden');
+  lucide.createIcons();
+}
+</script>

@@ -1,0 +1,321 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/global.css';
+---
+
+<Layout title="StatusJolt - Simple Status Pages for Your Business">
+  <!-- Header -->
+  <header class="bg-white shadow-sm">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <div class="flex-shrink-0">
+            <h1 class="text-2xl font-bold text-blue-600">StatusJolt</h1>
+          </div>
+        </div>
+        <div class="flex items-center space-x-4">
+          <a href="#pricing" class="text-gray-500 hover:text-gray-900">Pricing</a>
+          <a href="/login" class="text-gray-500 hover:text-gray-900">Login</a>
+          <a href="/signup" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium">
+            Get Started
+          </a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      <div class="text-center">
+        <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+          Keep Your Customers
+          <span class="text-blue-600">Informed</span>
+        </h1>
+        <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+          Simple, fast status pages that keep your customers updated during incidents. 
+          Built on Cloudflare's global network for maximum reliability.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/signup" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-md text-lg font-medium">
+            Start Free Trial
+          </a>
+          <a href="#demo" class="border border-gray-300 hover:border-gray-400 text-gray-700 px-8 py-3 rounded-md text-lg font-medium">
+            View Demo
+          </a>
+        </div>
+        <p class="text-sm text-gray-500 mt-4">Free forever plan • No credit card required</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Everything you need in a status page</h2>
+        <p class="text-lg text-gray-600">Built for speed, reliability, and simplicity</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="bg-blue-100 w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="zap" class="w-8 h-8 text-blue-600"></i>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">Lightning Fast</h3>
+          <p class="text-gray-600">Built on Cloudflare's global CDN. Your status page loads instantly worldwide.</p>
+        </div>
+        
+        <div class="text-center">
+          <div class="bg-green-100 w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="shield-check" class="w-8 h-8 text-green-600"></i>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">99.9% Uptime</h3>
+          <p class="text-gray-600">When your services are down, your status page stays up. Guaranteed.</p>
+        </div>
+        
+        <div class="text-center">
+          <div class="bg-purple-100 w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="bell" class="w-8 h-8 text-purple-600"></i>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">Smart Notifications</h3>
+          <p class="text-gray-600">Email and SMS alerts keep subscribers informed automatically.</p>
+        </div>
+        
+        <div class="text-center">
+          <div class="bg-orange-100 w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="palette" class="w-8 h-8 text-orange-600"></i>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">Custom Branding</h3>
+          <p class="text-gray-600">Match your brand colors and use your own domain.</p>
+        </div>
+        
+        <div class="text-center">
+          <div class="bg-red-100 w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="activity" class="w-8 h-8 text-red-600"></i>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">Real-time Updates</h3>
+          <p class="text-gray-600">Update incidents instantly. Changes appear in real-time.</p>
+        </div>
+        
+        <div class="text-center">
+          <div class="bg-teal-100 w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="code" class="w-8 h-8 text-teal-600"></i>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">Developer API</h3>
+          <p class="text-gray-600">Automate status updates with our simple REST API.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo Section -->
+  <section id="demo" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">See StatusJolt in action</h2>
+        <p class="text-lg text-gray-600">Here's what your status page could look like</p>
+      </div>
+      
+      <div class="max-w-4xl mx-auto">
+        <div class="bg-white rounded-lg shadow-lg p-8">
+          <div class="flex items-center mb-6">
+            <div class="w-8 h-8 bg-blue-600 rounded mr-3"></div>
+            <h3 class="text-xl font-semibold">Acme Corp Status</h3>
+          </div>
+          
+          <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+            <div class="flex items-center">
+              <i data-lucide="check-circle" class="w-5 h-5 text-green-600 mr-2"></i>
+              <span class="text-green-800 font-medium">All systems operational</span>
+            </div>
+          </div>
+          
+          <div class="space-y-4">
+            <div class="flex items-center justify-between py-3 border-b">
+              <div class="flex items-center">
+                <div class="w-3 h-3 bg-green-400 rounded-full mr-3"></div>
+                <span class="font-medium">Website</span>
+              </div>
+              <span class="text-green-600 text-sm">Operational</span>
+            </div>
+            
+            <div class="flex items-center justify-between py-3 border-b">
+              <div class="flex items-center">
+                <div class="w-3 h-3 bg-green-400 rounded-full mr-3"></div>
+                <span class="font-medium">API</span>
+              </div>
+              <span class="text-green-600 text-sm">Operational</span>
+            </div>
+            
+            <div class="flex items-center justify-between py-3 border-b">
+              <div class="flex items-center">
+                <div class="w-3 h-3 bg-yellow-400 rounded-full mr-3"></div>
+                <span class="font-medium">Payment Processing</span>
+              </div>
+              <span class="text-yellow-600 text-sm">Degraded</span>
+            </div>
+          </div>
+          
+          <div class="mt-8 pt-6 border-t">
+            <h4 class="font-semibold mb-4">Recent Incidents</h4>
+            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
+              <div class="flex items-start">
+                <div class="flex-shrink-0">
+                  <i data-lucide="alert-triangle" class="w-5 h-5 text-yellow-600"></i>
+                </div>
+                <div class="ml-3">
+                  <h5 class="font-medium text-yellow-800">Payment Processing Issues</h5>
+                  <p class="text-yellow-700 text-sm mt-1">We're experiencing slower than usual payment processing times.</p>
+                  <p class="text-yellow-600 text-xs mt-2">2 hours ago • Investigating</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Simple, transparent pricing</h2>
+        <p class="text-lg text-gray-600">Start free, upgrade when you need more</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <!-- Free Plan -->
+        <div class="bg-gray-50 rounded-lg p-8 border border-gray-200">
+          <div class="text-center mb-6">
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Free</h3>
+            <div class="text-4xl font-bold text-gray-900">$0</div>
+            <p class="text-gray-600 mt-2">Forever free</p>
+          </div>
+          
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center">
+              <i data-lucide="check" class="w-5 h-5 text-green-600 mr-3"></i>
+              <span>1 status page</span>
+            </li>
+            <li class="flex items-center">
+              <i data-lucide="check" class="w-5 h-5 text-green-600 mr-3"></i>
+              <span>3 components</span>
+            </li>
+            <li class="flex items-center">
+              <i data-lucide="check" class="w-5 h-5 text-green-600 mr-3"></i>
+              <span>Basic incident management</span>
+            </li>
+            <li class="flex items-center">
+              <i data-lucide="check" class="w-5 h-5 text-green-600 mr-3"></i>
+              <span>StatusJolt subdomain</span>
+            </li>
+          </ul>
+          
+          <a href="/signup" class="block w-full text-center bg-gray-800 hover:bg-gray-900 text-white py-3 rounded-md font-medium">
+            Get Started Free
+          </a>
+        </div>
+        
+        <!-- Pro Plan -->
+        <div class="bg-blue-600 rounded-lg p-8 text-white relative">
+          <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
+            <span class="bg-orange-400 text-white px-3 py-1 rounded-full text-sm font-medium">Most Popular</span>
+          </div>
+          
+          <div class="text-center mb-6">
+            <h3 class="text-2xl font-bold mb-2">Pro</h3>
+            <div class="text-4xl font-bold">$9</div>
+            <p class="text-blue-100 mt-2">per month</p>
+          </div>
+          
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center">
+              <i data-lucide="check" class="w-5 h-5 text-white mr-3"></i>
+              <span>Unlimited status pages</span>
+            </li>
+            <li class="flex items-center">
+              <i data-lucide="check" class="w-5 h-5 text-white mr-3"></i>
+              <span>10 components per page</span>
+            </li>
+            <li class="flex items-center">
+              <i data-lucide="check" class="w-5 h-5 text-white mr-3"></i>
+              <span>Custom domain</span>
+            </li>
+            <li class="flex items-center">
+              <i data-lucide="check" class="w-5 h-5 text-white mr-3"></i>
+              <span>Email notifications</span>
+            </li>
+            <li class="flex items-center">
+              <i data-lucide="check" class="w-5 h-5 text-white mr-3"></i>
+              <span>Custom branding</span>
+            </li>
+            <li class="flex items-center">
+              <i data-lucide="check" class="w-5 h-5 text-white mr-3"></i>
+              <span>API access</span>
+            </li>
+          </ul>
+          
+          <a href="/signup?plan=pro" class="block w-full text-center bg-white hover:bg-gray-50 text-blue-600 py-3 rounded-md font-medium">
+            Start Pro Trial
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="bg-gray-900 py-16">
+    <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-white mb-4">Ready to keep your customers informed?</h2>
+      <p class="text-xl text-gray-300 mb-8">Join thousands of companies using StatusJolt to communicate during incidents.</p>
+      <a href="/signup" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-md text-lg font-medium">
+        Get Started Now
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-gray-300 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-xl font-bold text-white mb-4">StatusJolt</h3>
+          <p class="text-gray-400">Simple, fast status pages for your business.</p>
+        </div>
+        
+        <div>
+          <h4 class="font-semibold text-white mb-3">Product</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-white">Features</a></li>
+            <li><a href="#pricing" class="hover:text-white">Pricing</a></li>
+            <li><a href="#" class="hover:text-white">API</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="font-semibold text-white mb-3">Company</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-white">About</a></li>
+            <li><a href="#" class="hover:text-white">Blog</a></li>
+            <li><a href="#" class="hover:text-white">Careers</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="font-semibold text-white mb-3">Support</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-white">Help Center</a></li>
+            <li><a href="#" class="hover:text-white">Contact</a></li>
+            <li><a href="#" class="hover:text-white">Status</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+        <p>&copy; 2026 StatusJolt. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</Layout>
